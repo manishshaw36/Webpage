@@ -1,0 +1,402 @@
+/* Card carosal */
+.pn-ProductNav_Wrapper {
+  position: relative;
+  padding: 0 11px;
+  box-sizing: border-box;
+}
+.pn-ProductNav {
+  /* Make this scrollable when needed */
+  overflow-x: auto;
+  /* We don't want vertical scrolling */
+  overflow-y: hidden;
+  /* For WebKit implementations, provide inertia scrolling */
+  -webkit-overflow-scrolling: touch;
+  /* We don't want internal inline elements to wrap */
+  white-space: nowrap;
+  /* If JS present, let's hide the default scrollbar */
+  position: relative;
+  font-size: 0;
+}
+.js .pn-ProductNav {
+  /* Make an auto-hiding scroller for the 3 people using a IE */
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  /* Remove the default scrollbar for WebKit implementations */
+}
+.js .pn-ProductNav::-webkit-scrollbar {
+  display: none;
+  /* positioning context for advancers */
+}
+.pn-ProductNav_Contents {
+  float: left;
+  transition: transform 0.2s ease-in-out;
+  position: relative;
+}
+.pn-ProductNav_Contents-no-transition {
+  transition: none;
+}
+.pn-ProductNav_Link {
+  text-decoration: none;
+  color: #111;
+  font-size: 1.2rem;
+  font-family: -apple-system, sans-serif;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  border: 1px solid transparent;
+  padding: 0 11px;
+}
+.pn-Advancer {
+  /* Reset the button */
+  appearance: none;
+  background: transparent;
+  padding: 0;
+  border: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.pn-Advancer:focus {
+  outline: 0;
+}
+.pn-Advancer:hover {
+  cursor: pointer;
+  /* Now style it as needed */
+  /* Set the buttons invisible by default */
+}
+.pn-Advancer_Left {
+  height: 50px;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+[data-overflowing="both"] ~ .pn-Advancer_Left, [data-overflowing="left"] ~ .pn-Advancer_Left {
+  opacity: 1;
+}
+.pn-Advancer_Right {
+  height: 50px;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+[data-overflowing="both"] ~ .pn-Advancer_Right, [data-overflowing="right"] ~ .pn-Advancer_Right {
+  opacity: 1;
+}
+.pn-Advancer_Icon {
+  width: 20px;
+  height: 44px;
+  fill: #bbb;
+}
+.pn-Advancer_Right .pn-Advancer_Icon:hover, .pn-Advancer_Left .pn-Advancer_Icon:hover {
+  fill: rgb(27, 26, 26);
+}
+.pn-ProductNav_Indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  width: 100px;
+  background-color: transparent;
+  transform-origin: 0 0;
+  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+.pn-ProductNav .card { 
+  white-space: normal;
+  width: 8rem;
+  font-size: 40%;
+  text-align: center;
+}
+.pn-ProductNav .card .card-title{
+  font-size: 0.8rem;
+}
+.pn-ProductNav .card .btn {
+  font-size: 100%;
+}
+
+
+
+/* Carosal section */
+#carouseria{
+  padding: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+#carouseria .carouseria-item{
+  display: none;
+  height: 100%;
+  transition: opacity 0.3s;
+}
+
+.carouseria-nav{
+  display: block;
+  position: relative;
+  padding: 0;
+  margin: 0 auto;
+  pointer-events: none;
+}
+
+.carouseria-nav .vertical{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.carouseria-nav .horizontal{
+  width: 100%;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  display: none;
+}
+
+.carouseria-nav .horizontal .nav-left{
+  pointer-events: all;
+  float: left;
+  margin: 0 auto;
+  font-size: 60px;
+  opacity: 0.7;
+  cursor: pointer;
+  padding-left: 10px;
+  padding-right: 15px;
+  padding-bottom: 5px;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
+  transition: 0.2s;
+}
+
+.carouseria-nav .horizontal .nav-left:hover{
+  opacity: 1;
+}
+
+.carouseria-nav .horizontal .nav-right{
+  pointer-events: all;
+  float: right;
+  margin: 0 auto;
+  font-size: 60px;
+  opacity: 0.7;
+  cursor: pointer;
+  padding-left: 15px;
+  padding-right: 10px;
+  padding-bottom: 5px;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
+  transition: 0.2s;
+}
+
+.carouseria-nav .horizontal .nav-right:hover{
+  opacity: 1;
+}
+
+.carouseria-index{
+  display: flex;
+  position: relative;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.carouseria-index .index-item{
+  display: block;
+  margin: 3px 3px;
+  width: 9px;
+  height: 9px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.2s;
+  cursor: pointer;
+  pointer-events: all;
+}
+
+.verti{
+  flex-direction: column;
+  align-items: flex-end;
+  margin-right: 20px;
+}
+
+.hori{
+  flex-direction: row;
+  align-items: flex-end;
+  top: -20px
+}
+
+/* Header and side nav section */
+.header {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
+  box-shadow: none;
+  background-color: #FC466B;
+  position: fixed;
+  height: 60px!important;
+  overflow: hidden;
+  z-index: 10;
+} 
+#sidebarMenu {
+  height: 100%;
+  z-index: 10;
+  position: fixed;
+  left: 0;
+  width: 300px;
+  transform: translateX(-100%);
+  transition: transform 330ms ease-in-out;
+  background: linear-gradient(180deg, #FC466B 0%, #3F5EFB 100%);
+}
+.sidebarMenuInner{
+  max-height: 100%;
+  overflow: scroll;
+  margin:0;
+  padding:0;
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
+}
+.sidebarMenuInner li{
+  list-style: none;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 20px;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+}
+.user-info{
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+}
+.sidebarMenuInner li a{
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+}
+input#openSidebarMenu[type="checkbox"]:checked ~ #sidebarMenu {
+  transform: translateX(0);
+}
+
+input#openSidebarMenu[type=checkbox] {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  display: none;
+}
+.sidebarIconToggle {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  cursor: pointer;
+  position: fixed;
+  z-index: 99;
+  height: 100%;
+  width: 100%;
+  top: 22px;
+  left: 15px;
+  height: 22px;
+  width: 22px;
+}
+.spinner {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background-color: #fff;
+}
+.spinner.horizontal {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  position: relative;
+  float: left;
+  margin-top: 3px;
+}
+.diagonal.part-1 {
+  position: relative;
+  transition: all 0.3s;
+  box-sizing: border-box;
+  float: left;
+}
+.diagonal.part-2 {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  position: relative;
+  float: left;
+  margin-top: 3px;
+}
+
+input#openSidebarMenu[type=checkbox]:checked ~ .sidebarIconToggle {
+  margin-left: 250px;
+}
+
+input#openSidebarMenu[type=checkbox]:checked ~ .sidebarIconToggle > .horizontal {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  opacity: 0;
+}
+input#openSidebarMenu[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-1 {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  transform: rotate(135deg);
+  margin-top: 8px;
+}
+input#openSidebarMenu[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  transform: rotate(-135deg);
+  margin-top: -9px;
+} 
+
+
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+
+
+
+@media (min-width: 768px) {
+  .pn-ProductNav .card {
+    width: 12rem;
+    font-size: 60%;
+  }
+  .pn-ProductNav .card .card-title{
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .pn-ProductNav .card {
+    width: 15rem;
+    font-size: 80%;
+  }
+  .pn-ProductNav .card .card-title{
+    font-size: 1.3rem;
+  }
+  .carouseria-nav .horizontal{
+    display: inline-block;
+  }
+}
+
+@media (min-width: 1280px) {
+  .pn-ProductNav .card {
+    width: 18rem;
+    font-size: 100%;
+  }
+  .pn-ProductNav .card .card-title{
+    font-size: 1.5rem;
+  }
+}
